@@ -1,0 +1,6 @@
+<% if (alert) { %>
+  <div class="alert <%= alert.type === 'error' ? 'alert-error' : 'alert-success' %>">
+    <%= alert.message %>
+  </div>
+<% } %>
+

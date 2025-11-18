@@ -1,0 +1,52 @@
+<%- include('../partials/header', { title }) %>
+<%- include('../partials/alert', { alert }) %>
+
+<section class="card">
+  <div class="card-header">
+    <div>
+      <h2>Students</h2>
+      <p>Manage enrolled students from a single place.</p>
+    </div>
+    <a href="/students/new" class="btn primary">Add Student</a>
+  </div>
+  <div class="table-wrapper">
+    <% if (students.length === 0) { %>
+      <p class="empty-state">No students yet. Use the button above to add one.</p>
+    <% } else { %>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th class="actions-col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% students.forEach(student => { %>
+            <tr>
+              <td><%= student.id %></td>
+              <td><%= student.firstname %></td>
+              <td><%= student.lastname %></td>
+              <td><%= student.email %></td>
+              <td class="actions-col">
+                <a href="/students/<%= student.id %>/edit" class="btn ghost">Edit</a>
+                <form
+                  action="/students/<%= student.id %>/delete"
+                  method="POST"
+                  onsubmit="return confirm('Delete this student?');"
+                >
+                  <button type="submit" class="btn danger">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>
+

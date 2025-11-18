@@ -1,0 +1,56 @@
+<%- include('../partials/header', { title }) %>
+<%- include('../partials/alert', { alert }) %>
+
+<section class="card">
+  <div class="card-header">
+    <div>
+      <h2><%= action === 'edit' ? 'Edit Student' : 'Add Student' %></h2>
+      <p><%= action === 'edit' ? 'Update student details.' : 'Create a new student record.' %></p>
+    </div>
+    <a href="/students" class="btn ghost">&larr; Back</a>
+  </div>
+  <form
+    class="form-grid"
+    action="<%= action === 'edit' ? `/students/${student.id}/update` : '/students' %>"
+    method="POST"
+  >
+    <div class="form-control">
+      <label for="firstname">First name</label>
+      <input
+        type="text"
+        id="firstname"
+        name="firstname"
+        value="<%= student ? student.firstname : '' %>"
+        required
+      />
+    </div>
+    <div class="form-control">
+      <label for="lastname">Last name</label>
+      <input
+        type="text"
+        id="lastname"
+        name="lastname"
+        value="<%= student ? student.lastname : '' %>"
+        required
+      />
+    </div>
+    <div class="form-control">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        value="<%= student ? student.email : '' %>"
+        required
+      />
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn primary">
+        <%= action === 'edit' ? 'Save changes' : 'Save student' %>
+      </button>
+    </div>
+  </form>
+</section>
+
+<%- include('../partials/footer') %>
+
