@@ -78,7 +78,8 @@ app.get('/students/new', (req, res) => {
   res.render('students/form', {
     title: 'Add Student',
     student: null,
-    action: 'create'
+    action: 'create',
+    alert: null
   });
 });
 
@@ -109,7 +110,8 @@ app.get('/students/:id/edit', (req, res) => {
     res.render('students/form', {
       title: 'Edit Student',
       student: results[0],
-      action: 'edit'
+      action: 'edit',
+      alert: null
     });
   });
 });
